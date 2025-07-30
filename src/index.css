@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+		--primary: 221.2 83.2% 53.3%;
+		--primary-foreground: 210 40% 98%;
+		--secondary: 210 40% 96%;
+		--secondary-foreground: 222.2 84% 4.9%;
+		--muted: 210 40% 96%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+		--accent: 210 40% 96%;
+		--accent-foreground: 222.2 84% 4.9%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 221.2 83.2% 53.3%;
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 222.2 84% 4.9%;
+		--foreground: 210 40% 98%;
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
+		--primary: 217.2 91.2% 59.8%;
+		--primary-foreground: 222.2 84% 4.9%;
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+		--accent: 217.2 32.6% 17.5%;
+		--accent-foreground: 210 40% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 224.3 76.3% 94.1%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	body {
+		@apply bg-background text-foreground antialiased;
+		font-feature-settings: "rlig" 1, "calt" 1;
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 1.2;
+	}
+	
+	p {
+		line-height: 1.6;
+	}
+}
+
+@layer components {
+	.text-hero {
+		@apply text-4xl font-bold tracking-tight sm:text-6xl;
+	}
+
+	.text-section-title {
+		@apply text-3xl font-bold tracking-tight sm:text-4xl;
+	}
+
+	.text-gradient {
+		@apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+	}
+
+	/* Enhanced Glow Effect */
+	.glow-effect {
+		@apply relative overflow-hidden;
+	}
+
+	.glow-effect::before {
+		content: "";
+		@apply absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 blur-xl opacity-0 transition-opacity duration-300;
+	}
+
+	.glow-effect:hover::before {
+		@apply opacity-100;
+	}
+
+	/* Card Hover Effects */
+	.card-hover {
+		@apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30;
+	}
+
+	.card-spacing {
+		@apply p-6;
+	}
+
+	.card-subtle {
+		@apply bg-card/50 backdrop-blur-sm;
+	}
+
+	/* Enhanced Pointer Animations */
+	.pointer-glow {
+		@apply relative;
+	}
+
+	.pointer-glow::after {
+		content: '';
+		@apply absolute inset-0 rounded-lg bg-primary/10 opacity-0 transition-all duration-300 scale-95;
+		pointer-events: none;
+	}
+
+	.pointer-glow:hover::after {
+		@apply opacity-100 scale-100;
+	}
+
+	.pointer-bounce {
+		@apply transition-transform duration-200 hover:scale-105 active:scale-95;
+	}
+
+	.pointer-lift {
+		@apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10;
+	}
+
+	.pointer-pulse {
+		@apply transition-all duration-300 hover:scale-105;
+	}
+
+	.pointer-pulse:hover {
+		animation: pulse 0.6s ease-in-out;
+	}
+
+	.pointer-ripple {
+		@apply relative overflow-hidden;
+	}
+
+	.pointer-ripple::before {
+		content: '';
+		@apply absolute inset-0 bg-primary/20 rounded-full scale-0 opacity-0 transition-all duration-500;
+		transform-origin: center;
+	}
+
+	.pointer-ripple:hover::before {
+		@apply scale-100 opacity-100;
+	}
+
+	/* Interactive Hover Effects */
+	.interactive-hover {
+		@apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10;
+	}
+
+	/* Custom cursor for interactive elements */
+	.interactive {
+		@apply cursor-pointer;
+	}
+
+	.interactive:hover {
+		cursor: pointer;
+	}
+
+	/* Enhanced Button Hover */
+	.btn-hover {
+		@apply relative overflow-hidden transition-all duration-300 hover:scale-105;
+	}
+
+	.btn-hover::before {
+		content: '';
+		@apply absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 transition-opacity duration-300;
+	}
+
+	.btn-hover:hover::before {
+		@apply opacity-100;
+	}
+
+	/* Text Hover Effects */
+	.text-hover {
+		@apply transition-colors duration-200 hover:text-primary;
+	}
+
+	/* Image Hover Effects */
+	.img-hover {
+		@apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+	}
+
+	/* Link Hover Effects */
+	.link-hover {
+		@apply relative transition-colors duration-200 hover:text-primary;
+	}
+
+	.link-hover::after {
+		content: '';
+		@apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+	}
+
+	.link-hover:hover::after {
+		@apply w-full;
+	}
+
+	/* Smooth Animations */
+	.fade-in {
+		animation: fadeIn 0.6s ease-in-out;
+	}
+
+	.slide-up {
+		animation: slideUp 0.6s ease-out;
+	}
+
+	.slide-in-left {
+		animation: slideInLeft 0.8s ease-out;
+	}
+
+	.scale-in {
+		animation: scaleIn 0.6s ease-out;
+	}
+
+	/* Enhanced Focus Styles */
+	*:focus-visible {
+		@apply outline-2 outline-offset-2 outline-primary ring-2 ring-primary/20;
+	}
+
+	/* Custom Scrollbar */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		@apply bg-muted/50;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+	}
+
+	/* Loading States */
+	.skeleton {
+		@apply animate-pulse bg-muted rounded;
+	}
+
+	/* Keyframe Animations */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideInLeft {
+		from {
+			opacity: 0;
+			transform: translateX(-50px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes scaleIn {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.05);
+		}
+	}
+
+	/* Smooth scrolling for navigation */
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+} 
